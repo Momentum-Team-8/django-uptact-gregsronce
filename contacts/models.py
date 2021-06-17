@@ -1,5 +1,7 @@
 from django.db import models
+from django.conf import settings
 from django.core.validators import RegexValidator
+from django.db.models.deletion import CASCADE, SET_NULL
 from localflavor.us.models import USStateField, USZipCodeField
 
 
@@ -20,3 +22,7 @@ class Contact(models.Model):
     state = USStateField(null=True, blank=True)
     zip_code = USZipCodeField(null=True, blank=True)
     birthday = models.DateField(null=True, blank=True)
+class Note(models.Model):
+    contact = models.ForeignKey(Contact, blank=True, null=True, on_delete=models.CASCADE)
+    text = models.CharField(max_length=255)
+    date_time = models.DateTimeField(auto_now_add=True)
