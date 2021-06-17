@@ -18,4 +18,5 @@ class ContactForm(ModelForm):
             'phone_number',
             'email',
             'birthday',
+            'note',
         ]
